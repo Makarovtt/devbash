@@ -2,14 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./fonts.css";
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #19191f;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #19191f;
     --foreground: #ededed;
   }
 }
@@ -17,11 +19,167 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: opensans, Arial, Helvetica, sans-serif;
+  min-width: 320px;
+  background-color: rgb(15, 15, 19);
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  outline: none;
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-size: 45px;
+  text-align: center;
+  span {
+    font-weight: 600;
+    font-style: italic;
+  }
+  @media (max-width: 1250px) {
+    font-size: 36px;
+  }
+  @media (max-width: 1000px) {
+    font-size: 30px;
+  }
+  @media (max-width: 480px) {
+    font-size: 24px;
+  }
+}
+h2 {
+  font-size: 40px;
+
+  @media (max-width: 1250px) {
+    font-size: 36px;
+  }
+  @media (max-width: 1000px) {
+    font-size: 30px;
+  }
+  @media (max-width: 480px) {
+    font-size: 24px;
+  }
+}
+h4 {
+  font-size: 21px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: Berlingske, "Times New Roman", Times, serif;
+}
+
+.back-text {
+  background: linear-gradient(
+      rgb(255, 242, 222) 0%,
+      rgb(247, 212, 156) 59.37%,
+      rgb(243, 201, 128) 100%
+    )
+    text;
+  -webkit-text-fill-color: transparent;
+}
+.termsdelivery-leftblock {
+  width: calc(44% - 15px);
+}
+.termsdelivery-rightblock {
+  width: calc(56% - 15px);
+}
+.clip-path {
+  clip-path: polygon(0% 0%, 96% 0px, 100% 50%, 96% 100%, 0% 100%);
+}
+.swiper-container {
+  display: flex;
+  img {
+    max-height: auto;
+    max-width: 670px;
+  }
+
+  @media (max-width: 1250px) {
+    img {
+      max-width: 500px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    img {
+      height: auto;
+      width: auto;
+    }
+  }
+
+  @media (max-width: 560px) {
+    img {
+      width: 320px;
+      height: auto;
+    }
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.ham {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 400ms;
+  user-select: none;
+}
+
+.hamRotate.active {
+  transform: rotate(45deg);
+}
+
+.hamRotate180.active {
+  transform: rotate(180deg);
+}
+
+.line {
+  fill: none;
+  transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+  stroke: #ffffff;
+  stroke-width: 5.5;
+  stroke-linecap: round;
+}
+
+.ham1 .top {
+  stroke-dasharray: 40 139;
+}
+
+.ham1 .bottom {
+  stroke-dasharray: 40 180;
+}
+
+.ham1.active .top {
+  stroke-dashoffset: -98px;
+}
+
+.ham1.active .bottom {
+  stroke-dashoffset: -138px;
+}
+
+.ham2 .top {
+  stroke-dasharray: 40 121;
+}
+
+.ham2 .bottom {
+  stroke-dasharray: 40 121;
+}
+
+.ham2.active .top {
+  stroke-dashoffset: -102px;
+}
+
+.ham2.active .bottom {
+  stroke-dashoffset: -102px;
+}
+
+.ham2.active {
+  transform: rotate(90deg);
 }

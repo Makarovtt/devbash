@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Berlingske";
+    font-display: swap;
+    src: local("Berlingske"),
+      url("/fonts/BerlingskeSerif-Bold.woff") format("woff");
+    font-weight: 800;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Berlingske";
+    font-display: swap;
+    src: local("Berlingske"),
+      url("/fonts/BerlingskeSerif-BoldItalic.woff") format("woff");
+    font-weight: 800;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Berlingske";
+    font-display: swap;
+    src: local("Berlingske"),
+      url("/fonts/BerlingskeSerif-SemiBold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Berlingske";
+    font-display: swap;
+    src: local("Berlingske"),
+      url("/fonts/BerlingskeSerif-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Berlingske";
+    font-display: swap;
+    src: local("Berlingske"),
+      url("/fonts/BerlingskeSerif-Italic.woff") format("woff");
+    font-weight: 400;
+    font-style: italic;
+  }
+}
+
+@font-face {
+  font-family: "opensans";
+  font-display: swap;
+  src: local("opensans"), url("/fonts/opensans.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "opensans";
+  font-display: swap;
+  src: local("opensans"), url("/fonts/opensansbold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "opensans";
+  font-display: swap;
+  src: local("opensans"), url("/fonts/opensanssemibold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "opensans";
+  font-display: swap;
+  src: local("opensans"), url("/fonts/opensansextrabold.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
