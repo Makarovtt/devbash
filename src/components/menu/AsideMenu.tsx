@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import { ICatGood } from "../menu-cafe/menu-cafe.interface";
+import { ICatGood } from "../../interfaces/menu-cafe.interface";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 

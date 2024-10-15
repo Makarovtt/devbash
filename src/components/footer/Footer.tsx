@@ -9,7 +9,7 @@ const Footer: FC = () => {
     <footer className="min-h-24 mt-auto w-full py-5">
       <ContainerMain>
         <div className="flex justify-between items-start px-5 760:px-32">
-          <div className="flex flex-row justify-between items-center mb-36  1000:mb-0">
+          <div className="flex flex-row justify-between items-center mb-3  1000:mb-0">
             <div className="h-[80px] w-[80px] relative">
               <Link target="_blank" href="/">
                 <Image

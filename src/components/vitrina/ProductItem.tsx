@@ -1,17 +1,29 @@
 import { FC, useState } from "react";
-import { IGood } from "../menu-cafe/menu-cafe.interface";
+import { IGood, ITypeMenu } from "../../interfaces/menu-cafe.interface";
 import Image from "next/image";
 import { convertPrice } from "@/lib/utils";
 import { GoldButton } from "@/ui/GoldButton";
 import { ProductModal } from "./ProductModal";
+import { useAppDispatch } from "@/store/hooks";
+import { addToCafeOrder } from "@/store/features/cafe.slice";
+import { Check } from "lucide-react";
+import { addToDeliveryOrder } from "@/store/features/delivery.slice";
 
 interface IProps {
   item: IGood;
-  type: string;
+  type: ITypeMenu;
+  isOrder?: boolean;
 }
 
-export const ProductItem: FC<IProps> = ({ item, type }) => {
+export const ProductItem: FC<IProps> = ({ item, type, isOrder = true }) => {
   const [isModal, setIsModal] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  // console.log(cafeInfo);
+
+  function putToBasket(data: IGood) {
+    if (type === "cafe") dispatch(addToCafeOrder(data));
+    dispatch(addToDeliveryOrder(data));
+  }
   const arrImage = item.picture.split(",");
   return (
     <>
@@ -52,14 +64,33 @@ export const ProductItem: FC<IProps> = ({ item, type }) => {
             </div>
           </li>
         </ul>
-        <div className="flex justify-center">
-          <GoldButton btnSize={"btnCard"}>Добавить в корзину</GoldButton>
-        </div>
+        {type === "cafe" ? (
+          <div
+            className="flex justify-center"
+            onClick={() => putToBasket(item)}
+          >
+            <GoldButton btnSize={"btnCard"}>
+              {isOrder ? <Check /> : "Добавить к заказу"}
+            </GoldButton>
+          </div>
+        ) : (
+          <div
+            className="flex justify-center"
+            onClick={() => putToBasket(item)}
+          >
+            <GoldButton btnSize={"btnCard"}>
+              {isOrder ? <Check /> : "Положить в корзину"}
+            </GoldButton>
+          </div>
+        )}
       </li>
       <ProductModal
         info={item}
         isModal={isModal}
         onClose={() => setIsModal(false)}
+        type={type}
+        isOrder={isOrder}
+        putToBasket={putToBasket}
       />
     </>
   );

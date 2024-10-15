@@ -1,3 +1,4 @@
+import { defaultCategoryCafe } from "@/data/menu";
 import { GoldButton } from "@/ui/GoldButton";
 import { FC } from "react";
 
@@ -17,7 +18,7 @@ export const AboutHistory: FC = () => {
         тандыре можно приготовить и такое популярное и пользующееся всеобщей
         любовью блюдо, как шашлык
       </p>
-      <GoldButton btnSize="btnPage" href="/menu-cafe">
+      <GoldButton btnSize="btnPage" href={`/menu-cafe/${defaultCategoryCafe}`}>
         Перейти в меню
       </GoldButton>
     </div>

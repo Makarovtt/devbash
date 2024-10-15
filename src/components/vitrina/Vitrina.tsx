@@ -1,12 +1,13 @@
 import { FC } from "react";
-import { IGood } from "../menu-cafe/menu-cafe.interface";
+import { ICafeOrder, IGood, ITypeMenu } from "../../interfaces/menu-cafe.interface";
 import { ProductItem } from "./ProductItem";
 
 interface IProps {
   products: IGood[] | undefined;
   isLoading: boolean;
   title: string;
-  type?: "delivery" | "cafe";
+  type?: ITypeMenu;
+  order: ICafeOrder[];
 }
 
 export const Vitrina: FC<IProps> = ({
@@ -14,6 +15,7 @@ export const Vitrina: FC<IProps> = ({
   isLoading,
   title,
   type = "cafe",
+  order,
 }) => {
   if (isLoading) return <div className="text-white">Загрузка ...</div>;
   return (
@@ -22,7 +24,15 @@ export const Vitrina: FC<IProps> = ({
       <ul className="flex flex-wrap justify-center mt-10 -mx-4">
         {products &&
           products.map((item) => {
-            return <ProductItem key={item.id} item={item} type={type} />;
+            const check = !!order.find((order) => order.id === item.id);
+            return (
+              <ProductItem
+                key={item.id}
+                item={item}
+                type={type}
+                isOrder={check}
+              />
+            );
           })}
       </ul>
     </div>

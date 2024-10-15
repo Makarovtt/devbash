@@ -1,17 +1,25 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { BasketHeader } from "./BasketHeader";
 import { BaskeMenuFooter } from "./BasketMenuFooter";
 import { Menu } from "./Menu";
 import { ContainerMain } from "@/ui/ContainerMain";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
+import { ITypeMenu } from "@/interfaces/menu-cafe.interface";
 
 export const MenuHeader: FC = () => {
   // const constBody = useRef<HTMLElement>();
-  const [isOpenBasket, setIsOpenBasket] = useState<boolean>(false);
   const pathname = usePathname();
+  const typeMenu = useRef<ITypeMenu>("");
+  if (pathname.split("/")[1] === "menu-cafe") {
+    typeMenu.current = "cafe";
+  } else if (pathname.split("/")[1] === "menu-delivery") {
+    typeMenu.current = "delivery";
+  } else {
+    typeMenu.current = "";
+  }
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -27,19 +35,13 @@ export const MenuHeader: FC = () => {
       >
         <ContainerMain className="relative">
           <Menu className="hidden 1000:flex" />
-          <BasketHeader
-            setIsOpenBasket={setIsOpenBasket}
-            className="hidden 1000:block absolute top-0 right-0"
-          />
+          <BasketHeader className="hidden 1000:block absolute top-0 right-0" />
         </ContainerMain>
       </div>
-      {pathname.split("/")[1] === "menu-cafe" &&
+      {typeMenu &&
         mounted &&
         createPortal(
-          <BaskeMenuFooter
-            isOpenBasket={isOpenBasket}
-            setIsOpenBasket={setIsOpenBasket}
-          />,
+          <BaskeMenuFooter typeMenu={typeMenu.current} />,
           document.body
         )}
     </>

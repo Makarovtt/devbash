@@ -8,6 +8,31 @@
   --background: #ffffff;
   --foreground: #19191f;
 }
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #484550;
+}
+::-webkit-scrollbar-track {
+  background: #1d1e20;
+}
+body {
+  scrollbar-width: 6px;
+  scrollbar-color: #484550 #1d1e20;
+}
+.basket--scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.basket--scrollbar::-webkit-scrollbar-thumb {
+  background: #484550;
+}
+.basket--scrollbar::-webkit-scrollbar-track {
+  background: #1d1e20;
+}
+::-webkit-scrollbar:hover {
+  width: 20px;
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -30,6 +55,7 @@ body {
   text-decoration: none;
   outline: none;
   scroll-behavior: smooth;
+  overflow: hidden;
 }
 
 h1 {

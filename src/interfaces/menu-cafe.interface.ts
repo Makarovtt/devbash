@@ -9,8 +9,8 @@ export interface IGood {
   picture: string;
   title: string;
   description: string;
-  price: string;
-  price_delivery: string;
+  price?: string;
+  price_delivery?: string;
   portion: string;
   min_portion: string;
   unit: string;
@@ -32,3 +32,14 @@ export interface IAllItem {
   category: string;
   delivery: string;
 }
+
+export type IGetProduct = Pick<
+  IGood,
+  "id" | "picture" | "title" | "price" | "price_delivery" | "portion" | "unit"
+>;
+
+export interface ICafeOrder extends IGetProduct {
+  quantity: number;
+}
+
+export type ITypeMenu = "cafe" | "delivery" | "";

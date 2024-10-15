@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { IGood } from "../menu-cafe/menu-cafe.interface";
+import { IGood, ITypeMenu } from "../../interfaces/menu-cafe.interface";
 import { ModalWindow } from "@/ui/modal/ModalWindow";
 import Image from "next/image";
 import { GoldButton } from "@/ui/GoldButton";
@@ -11,21 +11,32 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { Check } from "lucide-react";
 
 interface IProps {
   info: IGood;
   isModal: boolean;
+  type: ITypeMenu;
   onClose: () => void;
+  isOrder: boolean;
+  putToBasket: (arg0: IGood) => void;
 }
 
-export const ProductModal: FC<IProps> = ({ info, isModal, onClose }) => {
+export const ProductModal: FC<IProps> = ({
+  info,
+  isModal,
+  onClose,
+  type,
+  isOrder,
+  putToBasket,
+}) => {
   const arrImage = info.picture.split(",");
 
   if (typeof window === "object") {
     if (isModal) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "scroll";
+      document.body.style.overflow = "auto";
     }
   }
   return (
@@ -95,9 +106,25 @@ export const ProductModal: FC<IProps> = ({ info, isModal, onClose }) => {
             {convertPrice(Number(info.price))}
           </div>
         </div>
-        <div className="flex justify-center">
-          <GoldButton btnSize={"btnPage"}>Добавить в корзину</GoldButton>
-        </div>
+        {type === "cafe" ? (
+          <div
+            className="flex justify-center"
+            onClick={() => putToBasket(info)}
+          >
+            <GoldButton btnSize={"btnCard"}>
+              {isOrder ? <Check /> : "Добавить к заказу"}
+            </GoldButton>
+          </div>
+        ) : (
+          <div
+            className="flex justify-center"
+            onClick={() => putToBasket(info)}
+          >
+            <GoldButton btnSize={"btnCard"}>
+              {isOrder ? <Check /> : "Положить в корзину"}
+            </GoldButton>
+          </div>
+        )}
       </div>
     </ModalWindow>
   );

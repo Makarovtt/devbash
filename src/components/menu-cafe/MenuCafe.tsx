@@ -1,18 +1,19 @@
 "use client";
 import { ContainerMain } from "@/ui/ContainerMain";
-import { usePathname } from "next/navigation";
 import { FC } from "react";
 import { Vitrina } from "../vitrina/Vitrina";
 import { useGetProductsQuery } from "@/store/menu-cafe/menu-cafe.api";
 import { Aside } from "@/ui/Aside";
 import { AsideMenu } from "../menu/AsideMenu";
+import useRoutepath from "@/hooks/useRoutepath";
+import { useAppSelector } from "@/store/hooks";
 
 export const MenuCafe: FC = () => {
-  const router = usePathname();
-  const arrSlug = router.split("/");
-  const slug = arrSlug[arrSlug.length - 1];
+  const slug = useRoutepath();
   const { isLoading, isError, data } = useGetProductsQuery(slug);
   const activeCategory = data?.catGoods.filter((i) => i.url === slug);
+
+  const cafeInfo = useAppSelector((state) => state.cafeReducer);
   if (isError) console.log(isError);
   return (
     <main
@@ -36,6 +37,8 @@ export const MenuCafe: FC = () => {
                 products={data?.goods}
                 isLoading={isLoading}
                 title={activeCategory[0].title}
+                type="cafe"
+                order={cafeInfo}
               />
             </>
           )}

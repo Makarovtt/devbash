@@ -5,16 +5,15 @@ import { Button } from "@nextui-org/react";
 import { createPortal } from "react-dom";
 import { MblMenuFooter } from "./MblMenuFooter";
 import { MblBasketContainer } from "./MblBasketContainer";
+import { ITypeMenu } from "@/interfaces/menu-cafe.interface";
 
 interface IProps {
   className?: string;
-  isOpenBasket: boolean;
-  setIsOpenBasket: (arg0: boolean) => void;
+  typeMenu?: ITypeMenu;
 }
 export const BaskeMenuFooter: FC<IProps> = ({
   className,
-  isOpenBasket,
-  setIsOpenBasket,
+  typeMenu = "delivery",
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [mount, setMount] = useState<boolean>(false);
@@ -37,23 +36,14 @@ export const BaskeMenuFooter: FC<IProps> = ({
       >
         Меню
       </Button>
-      <BasketHeader
-        className="block 1000:hidden"
-        setIsOpenBasket={setIsOpenBasket}
-      />
+      <BasketHeader className="block 1000:hidden" />
       {mount &&
         createPortal(
           <MblMenuFooter isOpen={isOpen} onClose={() => setIsOpen(false)} />,
           document.body
         )}
       {mount &&
-        createPortal(
-          <MblBasketContainer
-            isOpenBasket={isOpenBasket}
-            setIsOpenBasket={setIsOpenBasket}
-          />,
-          document.body
-        )}
+        createPortal(<MblBasketContainer typeMenu={typeMenu} />, document.body)}
     </div>
   );
 };

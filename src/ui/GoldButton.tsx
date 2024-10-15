@@ -8,6 +8,7 @@ interface IProps {
   children: React.ReactNode | React.ReactNode[];
   href?: string;
   btnSize: "btnPage" | "btnCard";
+  onClick?: () => void;
 }
 
 interface IBtnPage {
@@ -60,6 +61,7 @@ export const GoldButton: FC<IProps> = ({
   children,
   href = "#",
   btnSize,
+  onClick,
 }) => {
   switch (btnSize) {
     case "btnCard":
@@ -76,22 +78,42 @@ export const GoldButton: FC<IProps> = ({
         "items-center max-w-[260px] 1250:max-w-[320px]",
         className
       )}
+      onClick={onClick}
     >
-      <Link href={href} className="z-[2] text-[#d4d4d4]">
-        <span
-          className={cn(
-            "flex border-none bg-[url(/images/main-page/button.png)] bg-center bg-no-repeat cursor-pointer justify-center",
-            "items-center text-[#141414] font-bold transition-all bg-contain px-4 opacity-85 hover:opacity-100",
-            btn.widthBtnMob,
-            btn.heightBtnMob,
-            btn.text,
-            btn.widthBtn,
-            btn.heightBtn
-          )}
-        >
-          {children}
-        </span>
-      </Link>
+      {btnSize === "btnPage" ? (
+        <Link href={href} className="z-[2] text-[#d4d4d4]" onClick={onClick}>
+          <span
+            className={cn(
+              "flex border-none bg-[url(/images/main-page/button.png)] bg-center bg-no-repeat cursor-pointer justify-center",
+              "items-center text-[#141414] font-bold transition-all bg-contain px-4 opacity-85 hover:opacity-100",
+              btn.widthBtnMob,
+              btn.heightBtnMob,
+              btn.text,
+              btn.widthBtn,
+              btn.heightBtn
+            )}
+          >
+            {children}
+          </span>
+        </Link>
+      ) : (
+        <div className="z-[2] text-[#d4d4d4]">
+          <span
+            className={cn(
+              "flex border-none bg-[url(/images/main-page/button.png)] bg-center bg-no-repeat cursor-pointer justify-center",
+              "items-center text-[#141414] font-bold transition-all bg-contain px-4 opacity-85 hover:opacity-100",
+              btn.widthBtnMob,
+              btn.heightBtnMob,
+              btn.text,
+              btn.widthBtn,
+              btn.heightBtn
+            )}
+          >
+            {children}
+          </span>
+        </div>
+      )}
+
       <div
         className={cn(
           "absolute top-3 z-[1] rounded-[60px]",

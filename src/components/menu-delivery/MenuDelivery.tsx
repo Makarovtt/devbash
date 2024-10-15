@@ -1,20 +1,20 @@
 "use client";
 import { ContainerMain } from "@/ui/ContainerMain";
-import { usePathname } from "next/navigation";
 import { FC, useMemo } from "react";
 import { Vitrina } from "../vitrina/Vitrina";
 import { useGetProductsQuery } from "@/store/menu-cafe/menu-cafe.api";
 import { Aside } from "@/ui/Aside";
 import { AsideMenu } from "../menu/AsideMenu";
+import useRoutepath from "@/hooks/useRoutepath";
+import { useAppSelector } from "@/store/hooks";
 
 export const MenuDelivery: FC = () => {
-  const router = usePathname();
-  const arrSlug = router.split("/");
-  const slug = arrSlug[arrSlug.length - 1];
+  const slug = useRoutepath();
   const { isLoading, isError, data } = useGetProductsQuery(slug);
   const activeCategory = data?.catGoods.filter((i) => i.url === slug);
   if (isError) console.log(isError);
 
+  const deliveryInfo = useAppSelector((state) => state.deliveryReducer);
   const newData = useMemo(() => {
     return data?.goods.filter((item) => item.delivery === "1");
   }, [data?.goods]);
@@ -48,6 +48,7 @@ export const MenuDelivery: FC = () => {
                 isLoading={isLoading}
                 title={activeCategory[0].title}
                 type="delivery"
+                order={deliveryInfo}
               />
             </>
           )}

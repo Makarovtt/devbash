@@ -29,7 +29,7 @@ export const Menu: FC<IProps> = ({
               href={link.href}
               onClick={() => setIsActiveMbl(false)}
               className={cn(
-                " block font-semibold text-base transition hover:text-[#f7c77e] px-2 py-4",
+                "block font-semibold text-base transition hover:text-[#f7c77e] px-2 py-4",
                 `${pathname.split("/")[1]}` === `${link.href.split("/")[1]}`
                   ? "text-[#f7c77e]"
                   : "text-[#d4d4d4]"

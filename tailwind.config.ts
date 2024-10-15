@@ -20,6 +20,9 @@ const config: Config = {
         foreground: "var(--foreground)",
         bgBlock: "rgb(29,29,37)",
         gold: "rgb(247, 199, 126)",
+        bgForm: "#27272a",
+        bgInput: "#bbbbbb",
+        bgInputHover: "#dddddd",
       },
       maxWidth: {
         maxWidth: "1200px",

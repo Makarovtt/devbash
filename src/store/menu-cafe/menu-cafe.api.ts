@@ -1,4 +1,4 @@
-import { IGetMenuCafe } from "@/components/menu-cafe/menu-cafe.interface";
+import { IGetMenuCafe } from "@/interfaces/menu-cafe.interface";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const menuCafeApi = createApi({
@@ -8,7 +8,7 @@ export const menuCafeApi = createApi({
   endpoints: (build) => ({
     getProducts: build.query<IGetMenuCafe, string>({
       query: (search: string) => ({
-        url: "app.php",
+        url: "app2.php",
         params: {
           type: search,
         },
