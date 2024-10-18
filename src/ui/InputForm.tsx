@@ -5,7 +5,7 @@ interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
 }
 
-export const InputForm: FC<IProps> = ({ placeholder, ...inputProps }) => {
+export const InputForm: FC<IProps> = ({ placeholder }) => {
   return (
     <Input
       classNames={{
@@ -14,7 +14,7 @@ export const InputForm: FC<IProps> = ({ placeholder, ...inputProps }) => {
         input: ["!text-black font-semibold", "placeholder:text-gray-500"],
       }}
       placeholder={placeholder}
-      {...inputProps}
+      // {...inputProps}
     />
   );
 };

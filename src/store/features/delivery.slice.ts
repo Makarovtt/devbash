@@ -28,6 +28,8 @@ export const delivery = createSlice({
           title: idProduct.title,
           picture: idProduct.picture,
           price: idProduct.price_delivery,
+          description: idProduct.description,
+          min_portion: idProduct.min_portion,
           portion: idProduct.portion,
           unit: idProduct.unit,
           quantity: 1,

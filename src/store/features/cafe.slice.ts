@@ -27,6 +27,8 @@ export const cafe = createSlice({
           id: idProduct.id,
           title: idProduct.title,
           picture: idProduct.picture,
+          description: idProduct.description,
+          min_portion: idProduct.min_portion,
           price: idProduct.price,
           portion: idProduct.portion,
           unit: idProduct.unit,

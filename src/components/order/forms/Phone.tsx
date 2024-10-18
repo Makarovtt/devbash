@@ -16,6 +16,7 @@ export const Phone: FC<IProps> = ({ phone, changePhone }) => {
   const refPhoneInput = useRef<HTMLInputElement | null>(null);
   if (refPhoneInput && refPhoneInput.current) {
     const mask = IMask(refPhoneInput.current!, maskOptions);
+    console.log(mask);
   }
   return (
     <div className="bg-bgForm rounded-xl py-3 px-3">

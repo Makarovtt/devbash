@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { convertPrice } from "@/lib/utils";
 import { Button } from "@nextui-org/react";
 import { Minus, Plus, Trash2 } from "lucide-react";
@@ -10,12 +10,14 @@ import {
   deleteItemToCafeOrder,
   removeItemToCafeOrder,
 } from "@/store/features/cafe.slice";
+import { BasketModal } from "../basket/BasketModal";
 
 interface IProps {
   item: ICafeOrder;
 }
 
 export const OrderItemCafe: FC<IProps> = ({ item }) => {
+  const [isModal, setIsModal] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   function addItemToBasket(id: number) {
     dispatch(addItemToCafeOrder(id));
@@ -37,7 +39,8 @@ export const OrderItemCafe: FC<IProps> = ({ item }) => {
             src={item.picture}
             alt=""
             fill
-            className="object-cover h-full"
+            className="object-cover h-full cursor-pointer"
+            onClick={() => setIsModal(true)}
           />
         </div>
         <ul className="flex items-start ml-4 flex-col 600:flex-row 600:items-end">
@@ -101,6 +104,12 @@ export const OrderItemCafe: FC<IProps> = ({ item }) => {
           </li>
         </ul>
       </div>
+      <BasketModal
+        item={item}
+        isModal={isModal}
+        onClose={() => setIsModal(false)}
+        isOrder={true}
+      />
     </div>
   );
 };

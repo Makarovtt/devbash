@@ -33,9 +33,9 @@ export interface IAllItem {
   delivery: string;
 }
 
-export type IGetProduct = Pick<
+export type IGetProduct = Omit<
   IGood,
-  "id" | "picture" | "title" | "price" | "price_delivery" | "portion" | "unit"
+  "category_url" | "category" | "delivery" | "order_goods"
 >;
 
 export interface ICafeOrder extends IGetProduct {

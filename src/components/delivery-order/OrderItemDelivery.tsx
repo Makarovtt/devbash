@@ -11,7 +11,7 @@ import {
   deleteItemToDeliveryOrder,
   removeItemToDeliveryOrder,
 } from "@/store/features/delivery.slice";
-import { ProductModal } from "../vitrina/ProductModal";
+import { BasketModal } from "../basket/BasketModal";
 
 interface IProps {
   item: ICafeOrder;
@@ -106,7 +106,7 @@ export const OrderItemDelivery: FC<IProps> = ({ item }) => {
           </li>
         </ul>
       </div>
-      <ProductModal
+      <BasketModal
         item={item}
         isModal={isModal}
         onClose={() => setIsModal(false)}
