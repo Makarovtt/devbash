@@ -9,6 +9,7 @@ interface IProps {
   href?: string;
   btnSize: "btnPage" | "btnCard";
   onClick?: () => void;
+  isDisabled?: boolean;
 }
 
 interface IBtnPage {
@@ -62,6 +63,7 @@ export const GoldButton: FC<IProps> = ({
   href = "#",
   btnSize,
   onClick,
+  isDisabled = false,
 }) => {
   switch (btnSize) {
     case "btnCard":
@@ -78,7 +80,7 @@ export const GoldButton: FC<IProps> = ({
         "items-center max-w-[260px] 1250:max-w-[320px]",
         className
       )}
-      onClick={onClick}
+      onClick={isDisabled ? () => {} : onClick}
     >
       {btnSize === "btnPage" ? (
         <Link href={href} className="z-[2] text-[#d4d4d4]" onClick={onClick}>
@@ -100,8 +102,9 @@ export const GoldButton: FC<IProps> = ({
         <div className="z-[2] text-[#d4d4d4]">
           <span
             className={cn(
-              "flex border-none bg-[url(/images/main-page/button.png)] bg-center bg-no-repeat cursor-pointer justify-center",
-              "items-center text-[#141414] font-bold transition-all bg-contain px-4 opacity-85 hover:opacity-100",
+              "flex border-none bg-[url(/images/main-page/button.png)] bg-center bg-no-repeat justify-center",
+              "items-center text-[#141414] font-bold transition-all bg-contain px-4 opacity-85",
+              isDisabled ? "grayscale" : "cursor-pointer hover:opacity-100",
               btn.widthBtnMob,
               btn.heightBtnMob,
               btn.text,

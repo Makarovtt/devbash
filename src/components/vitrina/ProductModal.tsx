@@ -1,5 +1,9 @@
 import { FC } from "react";
-import { IGood, ITypeMenu } from "../../interfaces/menu-cafe.interface";
+import {
+  ICafeOrder,
+  IGood,
+  ITypeMenu,
+} from "../../interfaces/menu-cafe.interface";
 import { ModalWindow } from "@/ui/modal/ModalWindow";
 import Image from "next/image";
 import { GoldButton } from "@/ui/GoldButton";
@@ -14,9 +18,10 @@ import "swiper/css/scrollbar";
 import { Check } from "lucide-react";
 
 interface IProps {
-  info: IGood;
+  info?: IGood;
+  item?: ICafeOrder;
   isModal: boolean;
-  type: ITypeMenu;
+  type?: ITypeMenu;
   onClose: () => void;
   isOrder: boolean;
   putToBasket: (arg0: IGood) => void;
@@ -24,13 +29,19 @@ interface IProps {
 
 export const ProductModal: FC<IProps> = ({
   info,
+  item = {},
   isModal,
   onClose,
   type,
   isOrder,
   putToBasket,
 }) => {
-  const arrImage = info.picture.split(",");
+  // const dataProduct
+  // if(item) {
+
+  // }
+
+  const arrImage = info?.picture.split(",");
 
   if (typeof window === "object") {
     if (isModal) {
@@ -67,7 +78,7 @@ export const ProductModal: FC<IProps> = ({
               },
             }}
           >
-            {arrImage.map((item: string) => {
+            {arrImage?.map((item: string) => {
               return (
                 <SwiperSlide key={item}>
                   <div
@@ -92,39 +103,36 @@ export const ProductModal: FC<IProps> = ({
           ></div>
         </div>
 
-        <h2>{info.title}</h2>
-        {info.description && (
+        <h2>{info?.title}</h2>
+        {info?.description && (
           <p className="text-[16px] text-gray-400 italic mx-5">
-            {info.description}
+            {info?.description}
           </p>
         )}
         <div className="mt-7 flex justify-between items-end gap-10">
           <div className="text-[14px] font-light text-[rgb(223,223,223)] block mb-1">
-            Цена за <b className="font-bold">{info.min_portion}</b> {info.unit}
+            Цена за <b className="font-bold">{info?.min_portion}</b>{" "}
+            {info?.unit}
           </div>
           <div className="text-[24px] font-bold">
-            {convertPrice(Number(info.price))}
+            {convertPrice(Number(info?.price))}
           </div>
         </div>
-        {type === "cafe" ? (
-          <div
-            className="flex justify-center"
-            onClick={() => putToBasket(info)}
-          >
-            <GoldButton btnSize={"btnCard"}>
-              {isOrder ? <Check /> : "Добавить к заказу"}
-            </GoldButton>
-          </div>
-        ) : (
-          <div
-            className="flex justify-center"
-            onClick={() => putToBasket(info)}
-          >
-            <GoldButton btnSize={"btnCard"}>
-              {isOrder ? <Check /> : "Положить в корзину"}
-            </GoldButton>
-          </div>
-        )}
+
+        <div
+          className="flex justify-center"
+          onClick={() => info && putToBasket(info)}
+        >
+          <GoldButton btnSize={"btnCard"}>
+            {isOrder ? (
+              <Check />
+            ) : type === "cafe" ? (
+              "Добавить к заказу"
+            ) : (
+              "Положить в корзину"
+            )}
+          </GoldButton>
+        </div>
       </div>
     </ModalWindow>
   );

@@ -37,7 +37,11 @@ export const DeliveryOrder: FC = () => {
           </div>
           <div className="flex flex-col items-center mt-[30px] max-h-[20%] min-h-[20%]">
             <div>
-              <GoldButton btnSize={"btnCard"} onClick={closeAside}>
+              <GoldButton
+                btnSize={"btnCard"}
+                onClick={closeAside}
+                isDisabled={finalPrice.current < 1000 ? true : false}
+              >
                 Оформить заказ
               </GoldButton>
             </div>
@@ -47,6 +51,11 @@ export const DeliveryOrder: FC = () => {
                 {convertPrice(finalPrice.current)}
               </span>
             </p>
+            {finalPrice.current < 1000 ? (
+              <p className="mt-2 text-small text-bgInput">
+                *Общая сумма заказа должна быть не менее 1000 рублей
+              </p>
+            ) : null}
           </div>
         </>
       ) : (
