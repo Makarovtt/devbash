@@ -51,6 +51,9 @@ export const MblMenuFooter: FC<Iprops> = ({ isOpen, className, onClose }) => {
         isLoading={isLoading}
         active={activeCategory && activeCategory[0]}
         onClose={onClose}
+        className="h-full w-full flex items-center justify-center"
+        classNameUl="max-h-[80%] overflow-y-auto basket--scrollbar w-full mx-2
+                        flex flex-col gap-4 border-2 border-gray-900 pr-8"
       />
     </div>
   );

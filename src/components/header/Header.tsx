@@ -6,7 +6,7 @@ import { MblMenu } from "./MblMenu";
 import { ContainerMain } from "@/ui/ContainerMain";
 import { LogotypeHeader } from "./LogotypeHeader";
 import { ContactsHeader } from "./ContactsHeader";
-import { ModalMenuTop } from "@/ui/modal/ModalMenuTop";
+// import { ModalMenuTop } from "@/ui/modal/ModalMenuTop";
 
 const Header: FC = () => {
   const [isActiveMbl, setIsActiveMbl] = useState<boolean>(false);
@@ -18,12 +18,12 @@ const Header: FC = () => {
           setIsActiveMbl={setIsActiveMbl}
         />
 
-        <ModalMenuTop
+        {/* <ModalMenuTop
           isVisible={isActiveMbl}
           onClose={() => setIsActiveMbl(false)}
-        >
-          <MblMenu isActiveMbl={isActiveMbl} setIsActiveMbl={setIsActiveMbl} />
-        </ModalMenuTop>
+        > */}
+        <MblMenu isActiveMbl={isActiveMbl} setIsActiveMbl={setIsActiveMbl} />
+        {/* </ModalMenuTop> */}
 
         <div className="bg-[#0f0f13] py-[10px] z-10">
           <ContainerMain>

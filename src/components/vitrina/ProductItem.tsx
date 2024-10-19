@@ -36,7 +36,8 @@ export const ProductItem: FC<IProps> = memo(function MemoProductItem({
     <>
       <li
         className="bg-bgBlock pb-6 rounded-lg overflow-hidden m-4 cursor-pointer
-                    flex flex-col justify-between max-w-[270px] group"
+                    flex flex-col justify-between max-w-[270px] group
+                    1200:-ml-1"
       >
         <div
           className=" shrink-0 h-[178px] w-[270px] overflow-hidden flex 

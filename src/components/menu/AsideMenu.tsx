@@ -8,6 +8,7 @@ interface IProps {
   isLoading: boolean;
   active: ICatGood | undefined;
   className?: string;
+  classNameUl?: string;
   onClose?: () => void;
 }
 
@@ -16,22 +17,15 @@ export const AsideMenu: FC<IProps> = memo(function MemoAsideMenu({
   isLoading,
   active,
   className,
+  classNameUl,
   onClose,
 }) {
   return (
-    <div
-      className={cn(
-        "h-full w-full flex items-center justify-center",
-        className
-      )}
-    >
+    <div className={cn("", className)}>
       {isLoading ? (
         <>Загрузка...</>
       ) : (
-        <ul
-          className="max-h-[80%] overflow-y-auto basket--scrollbar w-full mx-2
-                        flex flex-col gap-4 border-2 border-gray-900 pr-8"
-        >
+        <ul className={cn("", classNameUl)}>
           {category &&
             category.map((item) => {
               return (
