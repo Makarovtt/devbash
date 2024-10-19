@@ -10,7 +10,6 @@ import { usePathname } from "next/navigation";
 import { ITypeMenu } from "@/interfaces/menu-cafe.interface";
 
 export const MenuHeader: FC = () => {
-  // const constBody = useRef<HTMLElement>();
   const pathname = usePathname();
   const typeMenu = useRef<ITypeMenu>("");
   if (pathname.split("/")[1] === "menu-cafe") {

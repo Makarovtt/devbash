@@ -17,7 +17,7 @@ export const AboutGallery: FC = () => {
 
   useEffect(() => {
     video.current = document.querySelectorAll("video");
-    console.log(video);
+    // console.log(video);
   }, []);
   return (
     <div className="flex flex-col justify-between items-start mx-10 1250:mx-0">

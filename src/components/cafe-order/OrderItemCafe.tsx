@@ -28,6 +28,7 @@ export const OrderItemCafe: FC<IProps> = ({ item }) => {
   function deleteItemToBasket(id: number) {
     dispatch(deleteItemToCafeOrder(id));
   }
+  const arrImage = item.picture.split(",");
   return (
     <div className="relative flex items-end bg-bgBlock p-3">
       <div className="flex items-center">
@@ -36,7 +37,7 @@ export const OrderItemCafe: FC<IProps> = ({ item }) => {
                                 relative flex justify-center items-center"
         >
           <Image
-            src={item.picture}
+            src={arrImage[0]}
             alt=""
             fill
             className="object-cover h-full cursor-pointer"

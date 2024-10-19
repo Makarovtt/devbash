@@ -1,5 +1,6 @@
 "use client";
 
+import useRoutepath from "@/hooks/useRoutepath";
 import { ICafeOrder } from "@/interfaces/menu-cafe.interface";
 import { cn } from "@/lib/utils";
 import { toggleAsideOrder } from "@/store/features/aside-menu-order.slice";
@@ -7,15 +8,12 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Badge } from "@nextui-org/react";
 import { NotebookPen } from "lucide-react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { FC } from "react";
 interface IProps {
   className?: string;
 }
 export const BasketHeader: FC<IProps> = ({ className }) => {
-  const router = usePathname();
-  const arrSlug = router.split("/");
-  const slug = arrSlug[1];
+  const { page } = useRoutepath();
   const cafeInfo: ICafeOrder[] = useAppSelector((state) => state.cafeReducer);
   const deliveryInfo: ICafeOrder[] = useAppSelector(
     (state) => state.deliveryReducer
@@ -26,9 +24,9 @@ export const BasketHeader: FC<IProps> = ({ className }) => {
   };
   return (
     <>
-      {(slug === "menu-cafe" ||
-        slug === "menu-delivery" ||
-        slug === "order") && (
+      {(page === "menu-cafe" ||
+        page === "menu-delivery" ||
+        page === "order") && (
         <div
           onClick={openAside}
           className={cn(
@@ -38,7 +36,7 @@ export const BasketHeader: FC<IProps> = ({ className }) => {
             // animate
           )}
         >
-          {slug === "menu-cafe" ? (
+          {page === "menu-cafe" ? (
             <>
               <Badge
                 content={cafeInfo.length}

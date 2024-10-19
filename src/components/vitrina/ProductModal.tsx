@@ -30,11 +30,6 @@ export const ProductModal: FC<IProps> = ({
   isOrder,
   putToBasket,
 }) => {
-  // const dataProduct
-  // if(item) {
-
-  // }
-
   const arrImage = info?.picture.split(",");
 
   if (typeof window === "object") {

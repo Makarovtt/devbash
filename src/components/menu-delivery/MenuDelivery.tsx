@@ -9,7 +9,7 @@ import useRoutepath from "@/hooks/useRoutepath";
 import { useAppSelector } from "@/store/hooks";
 
 export const MenuDelivery: FC = () => {
-  const slug = useRoutepath();
+  const { slug } = useRoutepath();
   const { isLoading, isError, data } = useGetProductsQuery(slug);
   const activeCategory = data?.catGoods.filter((i) => i.url === slug);
   if (isError) console.log(isError);

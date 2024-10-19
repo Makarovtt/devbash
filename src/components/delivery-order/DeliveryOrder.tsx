@@ -52,7 +52,7 @@ export const DeliveryOrder: FC = () => {
               </span>
             </p>
             {finalPrice.current < 1000 ? (
-              <p className="mt-2 text-small text-bgInput">
+              <p className="mt-2 text-small text-bgInput mx-5">
                 *Общая сумма заказа должна быть не менее 1000 рублей
               </p>
             ) : null}

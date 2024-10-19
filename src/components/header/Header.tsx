@@ -1,24 +1,15 @@
 "use client";
 
 import { ButtonMblMenu } from "@/ui/ButtonMblMenu";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { MblMenu } from "./MblMenu";
-import { createPortal } from "react-dom";
 import { ContainerMain } from "@/ui/ContainerMain";
 import { LogotypeHeader } from "./LogotypeHeader";
 import { ContactsHeader } from "./ContactsHeader";
+import { ModalMenuTop } from "@/ui/modal/ModalMenuTop";
 
 const Header: FC = () => {
-  // const constBody = useRef<HTMLElement>();
   const [isActiveMbl, setIsActiveMbl] = useState<boolean>(false);
-  // constBody.current = document.body;
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-
-    return () => setMounted(false);
-  }, []);
   return (
     <>
       <header className="min-h-24 w-full">
@@ -26,14 +17,13 @@ const Header: FC = () => {
           isActiveMbl={isActiveMbl}
           setIsActiveMbl={setIsActiveMbl}
         />
-        {mounted &&
-          createPortal(
-            <MblMenu
-              isActiveMbl={isActiveMbl}
-              setIsActiveMbl={setIsActiveMbl}
-            />,
-            document.body
-          )}
+
+        <ModalMenuTop
+          isVisible={isActiveMbl}
+          onClose={() => setIsActiveMbl(false)}
+        >
+          <MblMenu isActiveMbl={isActiveMbl} setIsActiveMbl={setIsActiveMbl} />
+        </ModalMenuTop>
 
         <div className="bg-[#0f0f13] py-[10px] z-10">
           <ContainerMain>

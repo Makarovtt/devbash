@@ -4,25 +4,23 @@ import { X } from "lucide-react";
 import { FC } from "react";
 import { useGetProductsQuery } from "@/store/menu-cafe/menu-cafe.api";
 import { AsideMenu } from "../menu/AsideMenu";
-import { usePathname } from "next/navigation";
+import useRoutepath from "@/hooks/useRoutepath";
 interface Iprops {
   className?: string;
   isOpen: boolean;
   onClose: () => void;
 }
 export const MblMenuFooter: FC<Iprops> = ({ isOpen, className, onClose }) => {
-  const router = usePathname();
-  const arrSlug = router.split("/");
-  const slug = arrSlug[arrSlug.length - 1];
+  const { slug } = useRoutepath();
   const { isLoading, isError, data } = useGetProductsQuery(slug);
   const activeCategory = data?.catGoods.filter((i) => i.url === slug);
   if (isError) console.log(isError);
 
-  if (typeof window === "object") {
+  if (typeof window !== "undefined") {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflowY = "hidden";
     } else {
-      document.body.style.overflow = "scroll";
+      document.body.style.overflowY = "scroll";
     }
   }
 

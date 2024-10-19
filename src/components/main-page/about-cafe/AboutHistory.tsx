@@ -5,8 +5,9 @@ import { FC } from "react";
 export const AboutHistory: FC = () => {
   return (
     <div
-      className="rounded-md bg-bgBlock py-[30px] px-[40px] mx-2 760:mx-10
+      className="rounded-md bg-bgBlock py-[30px] px-[10px]  mx-2
                     flex justify-center items-center flex-col 
+                    760:mx-10 700:px-[40px]
                     1000:max-w-[450px] 1000:mx-10 1250:ml-5
                     1250:mx-0"
     >

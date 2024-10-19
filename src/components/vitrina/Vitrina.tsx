@@ -1,5 +1,9 @@
 import { FC } from "react";
-import { ICafeOrder, IGood, ITypeMenu } from "../../interfaces/menu-cafe.interface";
+import {
+  ICafeOrder,
+  IGood,
+  ITypeMenu,
+} from "../../interfaces/menu-cafe.interface";
 import { ProductItem } from "./ProductItem";
 
 interface IProps {
@@ -21,7 +25,7 @@ export const Vitrina: FC<IProps> = ({
   return (
     <div className="py-12">
       <h1>{title}</h1>
-      <ul className="flex flex-wrap justify-center mt-10 -mx-4">
+      <ul className="flex flex-wrap justify-center mt-10 ">
         {products &&
           products.map((item) => {
             const check = !!order.find((order) => order.id === item.id);

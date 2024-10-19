@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, memo, useState } from "react";
 import { IGood, ITypeMenu } from "../../interfaces/menu-cafe.interface";
 import Image from "next/image";
 import { convertPrice } from "@/lib/utils";
@@ -15,14 +15,21 @@ interface IProps {
   isOrder?: boolean;
 }
 
-export const ProductItem: FC<IProps> = ({ item, type, isOrder = true }) => {
+export const ProductItem: FC<IProps> = memo(function MemoProductItem({
+  item,
+  type,
+  isOrder = true,
+}) {
   const [isModal, setIsModal] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  // console.log(cafeInfo);
+  // console.log("rerender");
 
   function putToBasket(data: IGood) {
-    if (type === "cafe") dispatch(addToCafeOrder(data));
-    dispatch(addToDeliveryOrder(data));
+    if (type === "cafe") {
+      dispatch(addToCafeOrder(data));
+    } else {
+      dispatch(addToDeliveryOrder(data));
+    }
   }
   const arrImage = item.picture.split(",");
   return (
@@ -94,4 +101,4 @@ export const ProductItem: FC<IProps> = ({ item, type, isOrder = true }) => {
       />
     </>
   );
-};
+});
