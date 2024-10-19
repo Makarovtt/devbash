@@ -3,6 +3,7 @@ import { IGood, ITypeMenu } from "../../interfaces/menu-cafe.interface";
 import Image from "next/image";
 import { convertPrice } from "@/lib/utils";
 import { GoldButton } from "@/ui/GoldButton";
+import Loader from "@/public/images/menu-page/no-image.png";
 import { ProductModal } from "./ProductModal";
 import { useAppDispatch } from "@/store/hooks";
 import { addToCafeOrder } from "@/store/features/cafe.slice";
@@ -22,6 +23,7 @@ export const ProductItem: FC<IProps> = memo(function MemoProductItem({
 }) {
   const [isModal, setIsModal] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const [errorImage, setErrorImage] = useState(false);
   // console.log("rerender");
 
   function putToBasket(data: IGood) {
@@ -44,8 +46,16 @@ export const ProductItem: FC<IProps> = memo(function MemoProductItem({
                         justify-center items-center relative"
         >
           <Image
-            src={arrImage[0]}
-            alt=""
+            // src={arrImage[0]}
+            src={errorImage ? Loader : arrImage[0]}
+            alt={item.title}
+            placeholder="blur"
+            loading="lazy"
+            quality={100}
+            blurDataURL="/tube-spinner.svg"
+            // loader={() => <Spinner color="warning" />}
+            // blurDataURL={<Spinner color="warning" />}
+            onError={() => setErrorImage(true)}
             fill
             onClick={() => setIsModal(true)}
             className="object-cover transition group-hover:scale-125"
