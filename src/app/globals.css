@@ -42,7 +42,7 @@ body {
 }
 
 body {
-  color: var(--foreground);
+  color: white;
   background: var(--background);
   font-family: opensans, Arial, Helvetica, sans-serif;
   min-width: 320px;
