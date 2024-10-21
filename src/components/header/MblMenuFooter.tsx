@@ -11,7 +11,7 @@ interface Iprops {
   onClose: () => void;
 }
 export const MblMenuFooter: FC<Iprops> = ({ isOpen, className, onClose }) => {
-  const { slug } = useRoutepath();
+  const { slug, page } = useRoutepath();
   const { isLoading, isError, data } = useGetProductsQuery(slug);
   const activeCategory = data?.catGoods.filter((i) => i.url === slug);
   if (isError) console.log(isError);
@@ -54,6 +54,7 @@ export const MblMenuFooter: FC<Iprops> = ({ isOpen, className, onClose }) => {
         className="h-full w-full flex items-center justify-center"
         classNameUl="max-h-[80%] overflow-y-auto basket--scrollbar w-full mx-2
                         flex flex-col gap-4 border-2 border-gray-900 pr-8"
+        page={page === "cafe-menu" ? "cafe" : "delivery"}
       />
     </div>
   );
