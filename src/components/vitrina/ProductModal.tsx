@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { IGood, ITypeMenu } from "../../interfaces/menu-cafe.interface";
 import { ModalWindow } from "@/ui/modal/ModalWindow";
+import Loader from "@/public/images/menu-page/no-image.png";
 import Image from "next/image";
 import { GoldButton } from "@/ui/GoldButton";
 import { convertPrice } from "@/lib/utils";
@@ -30,6 +31,7 @@ export const ProductModal: FC<IProps> = ({
   isOrder,
   putToBasket,
 }) => {
+  const [errorImage, setErrorImage] = useState(false);
   const arrImage = info?.picture.split(",");
 
   if (typeof window === "object") {
@@ -76,8 +78,13 @@ export const ProductModal: FC<IProps> = ({
                                   1250:h-[600px]"
                   >
                     <Image
-                      src={item}
+                      src={errorImage ? Loader : item}
                       alt=""
+                      placeholder="blur"
+                      loading="lazy"
+                      quality={100}
+                      blurDataURL="/tube-spinner.svg"
+                      onError={() => setErrorImage(true)}
                       fill
                       className="object-contain h-full rounded-lg shadow-xl object-center"
                     />
