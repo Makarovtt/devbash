@@ -41,6 +41,7 @@ export const MenuDelivery: FC = () => {
                   isLoading={isLoading}
                   active={activeCategory[0]}
                   className="sticky top-[130px]"
+                  page="delivery"
                 />
               </Aside>
               <Vitrina

@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { convertPrice } from "@/lib/utils";
+import Loader from "@/public/images/menu-page/no-image.png";
 import { Button } from "@nextui-org/react";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
@@ -18,6 +19,7 @@ interface IProps {
 }
 
 export const OrderItemDelivery: FC<IProps> = ({ item }) => {
+  const [errorImage, setErrorImage] = useState(false);
   const [isModal, setIsModal] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
@@ -39,9 +41,14 @@ export const OrderItemDelivery: FC<IProps> = ({ item }) => {
                                 relative flex justify-center items-center"
         >
           <Image
-            src={arrImage[0]}
-            alt=""
+            src={errorImage ? Loader : arrImage[0]}
+            alt={item.title}
             fill
+            placeholder="blur"
+            loading="lazy"
+            quality={100}
+            blurDataURL="/tube-spinner.svg"
+            onError={() => setErrorImage(true)}
             className="object-cover h-full cursor-pointer"
             onClick={() => setIsModal(true)}
           />

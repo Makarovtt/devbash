@@ -10,6 +10,7 @@ interface IProps {
   className?: string;
   classNameUl?: string;
   onClose?: () => void;
+  page: "cafe" | "delivery";
 }
 
 export const AsideMenu: FC<IProps> = memo(function MemoAsideMenu({
@@ -19,6 +20,7 @@ export const AsideMenu: FC<IProps> = memo(function MemoAsideMenu({
   className,
   classNameUl,
   onClose,
+  page,
 }) {
   return (
     <div className={cn("", className)}>
@@ -31,7 +33,11 @@ export const AsideMenu: FC<IProps> = memo(function MemoAsideMenu({
               return (
                 <li key={item.id} className="max-w-[250px] ">
                   <Link
-                    href={`/menu-cafe/${item.url}`}
+                    href={
+                      page === "cafe"
+                        ? `/menu-cafe/${item.url}`
+                        : `/menu-delivery/${item.url}`
+                    }
                     // href={item.url}
                     onClick={onClose}
                     className={cn(

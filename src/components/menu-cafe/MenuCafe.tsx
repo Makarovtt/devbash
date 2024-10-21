@@ -31,6 +31,7 @@ export const MenuCafe: FC = () => {
                   isLoading={isLoading}
                   active={activeCategory[0]}
                   className="sticky top-[130px]"
+                  page="cafe"
                 />
               </Aside>
               <Vitrina
