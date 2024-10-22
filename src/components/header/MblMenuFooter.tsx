@@ -23,7 +23,7 @@ export const MblMenuFooter: FC<Iprops> = ({ isOpen, className, onClose }) => {
       document.body.style.overflowY = "scroll";
     }
   }
-
+  console.log(page);
   if (!isOpen) return null;
 
   const toggleMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -54,7 +54,7 @@ export const MblMenuFooter: FC<Iprops> = ({ isOpen, className, onClose }) => {
         className="h-full w-full flex items-center justify-center"
         classNameUl="max-h-[80%] overflow-y-auto basket--scrollbar w-full mx-2
                         flex flex-col gap-4 border-2 border-gray-900 pr-8"
-        page={page === "cafe-menu" ? "cafe" : "delivery"}
+        page={page === "menu-cafe" ? "cafe" : "delivery"}
       />
     </div>
   );
