@@ -57,7 +57,7 @@ export const Card: FC = () => {
                 className="min-w-[250px] text-[16px] font-semibold text-white
                                 ml-4"
               >
-                422-000
+                +7 (988) 171 42-42
               </p>
             </div>
           </div>

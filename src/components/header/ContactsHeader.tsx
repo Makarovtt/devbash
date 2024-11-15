@@ -17,7 +17,7 @@ export const ContactsHeader: FC = () => {
         />
         <div>
           <p className="font-800 text-lg text-white leading-6 font-bold">
-            41-42-42, 422-000
+            41-42-42, +7 (988) 171 42-42
           </p>
           <p className="font-400 text-base text-[rgb(218, 218, 218)] leading-6">
             ул. Медногорская, 121
